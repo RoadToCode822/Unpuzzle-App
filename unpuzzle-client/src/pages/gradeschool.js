@@ -1,8 +1,8 @@
 import React from 'react';
-const gradeschool = (props) => {
+const GradeSchool = (props) => {
   return(
     <div>Grade School</div>
   )
 }
 
-export default (gradeschool);
+export default (GradeSchool);

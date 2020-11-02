@@ -17,7 +17,7 @@ const styles = (theme) => ({
   ...theme.themeStyle,
 });
 
-class signup extends Component {
+class Signup extends Component {
   constructor() {
     super();
     this.state = {
@@ -141,7 +141,7 @@ class signup extends Component {
   }
 }
 
-signup.propTypes = {
+Signup.propTypes = {
   classes: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
@@ -153,7 +153,7 @@ const mapStateToProps = (state) => ({
   UI: state.UI
 })
 
-export default connect(mapStateToProps, { signupUser })(withStyles(styles)(signup));
+export default connect(mapStateToProps, { signupUser })(withStyles(styles)(Signup));
 
 /* Random Commit
 Concepts

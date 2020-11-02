@@ -9,7 +9,7 @@ export const loginUser = (userData, history) => (dispatch) => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push('/'); // redirect to homepage after login
+      history.push('/puzzletweet'); // redirect to homepage after login
     })
     .catch((err) => {
       dispatch({
