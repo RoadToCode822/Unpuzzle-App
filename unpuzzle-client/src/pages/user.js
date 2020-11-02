@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { getUserData } from '../redux/actions/dataActions';
 
 
-class user extends Component {
+class User extends Component {
   state = {
     profile: null,
     puzzlepieceIdParam: null
@@ -81,7 +81,7 @@ class user extends Component {
   }
 }
 
-user.propTypes = {
+User.propTypes = {
   getUserData: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired
 }
@@ -90,4 +90,4 @@ const mapStateToProps = (state) => ({
   data: state.data
 })
 
-export default connect(mapStateToProps, { getUserData } )(user);
+export default connect(mapStateToProps, { getUserData } )(User);

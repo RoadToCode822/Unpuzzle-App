@@ -168,7 +168,7 @@ const Navbar = (props) => {
     },
   ];
 
-  const routes = [
+  const guestRoutes = [
     { name: "Home", link: "/", activeIndex: 0 },
     {
       name: "Tutoring",
@@ -178,18 +178,19 @@ const Navbar = (props) => {
       ariaOwns: anchorEl ? "simple-menu" : undefined,
       ariaHasPopup: anchorEl ? true : undefined,
     },
-    { name: "Puzzle World", link: "/puzzleworld", activeIndex: 2 },
+    { name: "Puzzle Tweet", link: "/puzzletweet", activeIndex: 2 },
+    { name: "Puzzle World", link: "/puzzleworld", activeIndex: 3 },
     {
       name: "Innovation in Education",
       link: "/innovationineducation",
-      activeIndex: 3,
+      activeIndex: 4,
     },
-    { name: "Login", link: "/login", activeIndex: 4 },
-    { name: "Signup", link: "/signup", activeIndex: 5 },
+    { name: "Login", link: "/login", activeIndex: 5 },
+    { name: "Signup", link: "/signup", activeIndex: 6 },
   ];
 
   useEffect(() => {
-    [...menuOptions, ...routes].forEach((route) => {
+    [...menuOptions, ...guestRoutes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
           if (props.value !== route.activeIndex) {
@@ -206,9 +207,9 @@ const Navbar = (props) => {
           break;
       }
     });
-  }, [props.value, menuOptions, props.selectedIndex, routes, props]);
+  }, [props.value, menuOptions, props.selectedIndex, guestRoutes, props]);
 
-  const tabs = (
+  const guestUserTabs = (
     <Fragment>
       <Tabs
         value={props.value}
@@ -216,7 +217,7 @@ const Navbar = (props) => {
         className="tabContainer"
         indicatorColor="primary"
       >
-        {routes.map((route, i) => (
+        {guestRoutes.map((route, i) => (
           <Tab
             key={`${route}${i}`}
             className={classes.tab}
@@ -269,7 +270,68 @@ const Navbar = (props) => {
     </Fragment>
   );
 
-  const drawer = (
+  const loggedInTabs = (
+    <Fragment>
+      <Tabs
+        value={props.value}
+        onChange={handleChange}
+        className="tabContainer"
+        indicatorColor="primary"
+      >
+        {guestRoutes.map((route, i) => (
+          <Tab
+            key={`${route}${i}`}
+            className={classes.tab}
+            component={Link}
+            to={route.link}
+            label={route.name}
+            onMouseOver={route.mouseOver}
+            aria-owns={route.ariaOwns}
+            aria-haspopup={route.ariaHasPopup}
+          />
+        ))}
+      </Tabs>
+      <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        component={Link}
+        to="/bookasession"
+      >
+        Book A Tutoring Session
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={openMenu}
+        onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
+        classes={{ paper: classes.menu }}
+        elevation={0}
+        style={{ zIndex: 1302 }}
+        keepMounted
+      >
+        {menuOptions.map((option, i) => (
+          <MenuItem
+            key={`${option}${i}`}
+            component={Link}
+            to={option.link}
+            classes={{ root: classes.menuItem }}
+            onClick={(event) => {
+              handleMenuItemClick(event, i);
+              props.setValue(1);
+              handleClose();
+            }}
+            selected={i === props.selectedIndex && props.value === 1}
+          >
+            {option.name}
+          </MenuItem>
+        ))}
+      </Menu>
+    </Fragment>
+  );
+
+  const guestUserDrawer = (
     <Fragment>
       <SwipeableDrawer
         disableBackdropTransition={!iOS}
@@ -281,7 +343,7 @@ const Navbar = (props) => {
       >
         <div className={classes.toolbarMargin}></div>
         <List>
-          {routes.map((route) => (
+          {guestRoutes.map((route) => (
             <ListItem
               classes={{ selected: classes.drawerItemSelected }}
               key={`${route}${route.activeIndex}`}
@@ -356,10 +418,15 @@ const Navbar = (props) => {
                   <HomeIcon />
                 </MyButton>
               </Link>
+              <Link to="/puzzletweet">
+                <MyButton tip="Home">
+                  Puzzle Tweet
+                </MyButton>
+              </Link>
               <Notifications />
             </Fragment>
           ) : (
-            <Fragment>{matches ? drawer : tabs}</Fragment>
+            <Fragment>{matches ? guestUserDrawer : guestUserTabs}</Fragment>
           )}
         </Toolbar>
       </AppBar>

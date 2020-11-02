@@ -15,17 +15,18 @@ import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
 // Pages
 // import home from './pages/home';
-import login from './pages/login';
-import signup from './pages/signup';
+import login from './pages/Login';
+import signup from './pages/Signup';
 import Home from './pages/Home';
-import user from './pages/user';
-import tutoring from './pages/tutoring';
-import gradeschool from './pages/gradeschool';
-import computerprogramming from './pages/computerprogramming';
-import digitalskills from './pages/digitalskills';
-import puzzleworld from './pages/puzzleworld';
-import innovationineducation from './pages/innovationineducation';
-import bookasession from './pages/bookasession';
+import user from './pages/User';
+import tutoring from './pages/Tutoring';
+import gradeschool from './pages/GradeSchool';
+import computerprogramming from './pages/ComputerProgramming';
+import digitalskills from './pages/DigitalSkills';
+import PuzzleWorld from './pages/PuzzleWorld';
+import PuzzleTweet from './pages/PuzzleTweet';
+import innovationineducation from './pages/InnovationInEducation';
+import bookasession from './pages/BookASession';
 import Footer from './components/layout/Footer';
 
 import axios from 'axios';
@@ -59,12 +60,13 @@ function App() {
         <Router>
           <Navbar value={value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
           <Switch>
-            <Route exact path="/" component={puzzleworld} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/tutoring" component={tutoring} />
             <Route exact path="/gradeschool" component={gradeschool} />
             <Route exact path="/computerprogramming" component={computerprogramming} />
             <Route exact path="/digitalskills" component={digitalskills} />
-            <Route exact path="/puzzleworld" component={puzzleworld} />
+            <Route exact path="/puzzleworld" component={PuzzleWorld} />
+            <Route exact path="/puzzletweet" component={PuzzleTweet} />
             <Route exact path="/innovationineducation" component={innovationineducation} />
             <Route exact path="/bookasession" component={bookasession} />
             <AuthRoute exact path="/login" component={login} />

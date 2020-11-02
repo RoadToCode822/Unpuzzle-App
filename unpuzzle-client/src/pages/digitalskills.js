@@ -1,8 +1,8 @@
 import React from 'react';
-const digitalskills = (props) => {
+const DigitalSkills = (props) => {
   return(
     <div>Digital Skills</div>
   )
 }
 
-export default (digitalskills);
+export default (DigitalSkills);
